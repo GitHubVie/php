@@ -1,4 +1,3 @@
 <?php
-echo "php<br>";
-echo phpinfo();
+echo "Hello World"!";
 ?>
