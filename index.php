@@ -6,13 +6,14 @@
 </head>
 
 <body>
+	<br><br><br>
 	<div class="container">      
-		<div class="col-sm-6 col-sm-offset-3">
+		<div class="col-sm-12 col-sm-offset-3">
 			<form class="form-horizontal" role="form" method="post" action="string.php">
 			<div class="form-group">
-				<label for="string" class="col-sm-5 control-label">String json_decode</label>
-				<div class="col-sm-7">
-					<input type="text" class="form-control" name="string" placeholder="string" value="string">
+				<label for="string" class="col-sm-12 control-label">String json_decode</label>
+				<div class="col-sm-12">
+					<input type="text" class="form-control" name="string" placeholder="string" value="">
 				</div>
 			</div>
 						
