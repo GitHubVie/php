@@ -1,5 +1,23 @@
-FROM php
-ADD . /var/www
-EXPOSE 8080
-WORKDIR /var/www
-ENTRYPOINT ["php", "-S", "0.0.0.0:8080"]
+FROM ubuntu:14.04
+
+MAINTAINER YCZ <chenzhong@iscas.ac.cn>
+
+# install apache2 php5 python jpgraph curl
+RUN apt-get update && apt-get install -y curl vim apache2 php5 mysql-client php5-mysql php5-curl libphp-jpgraph php5-gd python-pip
+RUN pip install pika
+
+# apache2 configuration file
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY mime.conf /etc/apache2/mods-available/mime.conf
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+
+ADD . /var/www/html
+
+RUN chown www-data:www-data -R /var/www/html
+RUN chmod 775 -R /var/www/html
+
+EXPOSE 80
+
+CMD ["/usr/sbin/apache2ctl", " -D", "FOREGROUND"]
