@@ -2,11 +2,11 @@ FROM ubuntu:14.04
 
 MAINTAINER YCZ <chenzhong@iscas.ac.cn>
 
-# install apache2 php5 python jpgraph curl
-RUN apt-get update && apt-get install -y curl vim apache2 php5 mysql-client php5-mysql php5-curl libphp-jpgraph php5-gd python-pip
-RUN pip install pika
+# install apache2 php5 curl
+RUN apt-get update && apt-get install -y curl vim apache2 php5 mysql-client php5-mysql php5-curl
 
 # apache2 configuration file
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY mime.conf /etc/apache2/mods-available/mime.conf
 ENV APACHE_RUN_USER www-data
